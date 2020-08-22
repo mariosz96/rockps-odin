@@ -1,18 +1,3 @@
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const player = prompt("Choose one.").toLowerCase();
-
-    if (player === "rock" || player === "paper" || player === "scissors") {
-      const cpu = computerPlay();
-      playRound(player, cpu);
-    } else {
-      alert("You have to input a string. Choose one.");
-      i--;
-    }
-  }
-  return score;
-}
-
 function computerPlay() {
   let choices = ["Rock", "Paper", "Scissors"];
   return choices[Math.floor(Math.random() * choices.length)];
@@ -41,5 +26,13 @@ function playRound(playerSel, cpuSel) {
 }
 
 let score = 0;
-game();
-console.log(score);
+const buttons = document.querySelectorAll(".btn");
+const number = document.querySelector("#bruhscore");
+buttons.forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    playerSel = btn.textContent;
+    cpuSel = computerPlay();
+    playRound(playerSel, cpuSel);
+    number.textContent = score;
+  })
+);
